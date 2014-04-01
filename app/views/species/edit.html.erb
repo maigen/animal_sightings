@@ -1,0 +1,16 @@
+<h1>Edit Species</h1>
+
+<% if @species.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @species.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/species/<%= @species.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input id="species_name" name="name" type="text" value="<%= @species.name %>">
+  <button class="btn btn-danger">Update Species</button>
+</form>

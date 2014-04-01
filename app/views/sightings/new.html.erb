@@ -1,0 +1,31 @@
+<h1>New Sighting</h1>
+
+<% if @sighting.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @sighting.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/sightings" method="post">
+  <label>Species spotted:
+    <select name="species_id">
+      <% @all_species.each do |species| %>
+        <option value="<%= species.id %>"><%= species.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <label>In what region:
+    <select name="region_id">
+      <% @regions.each do |region| %>
+        <option value="<%= region.id %>"><%= region.name %></option>
+      <% end %>
+    </select>
+  </label>
+  <button class="btn btn-danger">Create Sighting</button>
+</form>
+
+

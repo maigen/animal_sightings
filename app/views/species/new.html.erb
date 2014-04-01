@@ -1,0 +1,17 @@
+<h1>New Species</h1>
+
+<% if @species.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @species.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/species" method="post">
+  <input name="name" type="text" placeholder="Species Name" value="<%= @species.name %>">
+  <button class="btn btn-danger">Create Species</button>
+</form>
+
+

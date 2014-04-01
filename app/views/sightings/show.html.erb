@@ -1,0 +1,9 @@
+<h1> <%= @sighting.name %></h1>
+<p>
+  <a href="/sightings">Go Back</a> |
+  <a href="/sightings/<%= @sighting.id %>/edit">Edit</a> |
+  <a href="/sightings/<%= @sighting.id %>"
+    data-confirm="Are you sure?"
+    data-method="delete"
+    rel="nofollow">Delete</a>
+</p>

@@ -1,0 +1,9 @@
+<h1>All Your Sightings</h1>
+
+<ul>
+  <% @sightings.each do |sighting| %>
+    <li><a href="/sightings/<%= sighting.id %>"> <%= sighting.species_id %> - <%= sighting.region_id %></a> </li>
+  <% end %>
+</ul>
+
+<a href="/sightings/new">Make a New Sighting</a>
