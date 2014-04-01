@@ -1,0 +1,16 @@
+<h1>Edit Region</h1>
+
+<% if @region.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @region.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/regions/<%=@region.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input id="region_name" name="name" type="text" value="<%= @region.name %>">
+  <button class="btn btn-danger">Update Region</button>
+</form>

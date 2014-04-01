@@ -1,0 +1,17 @@
+<h1>New Region</h1>
+
+<% if @region.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @region.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/regions" method="post">
+  <input id="region_name" name="name" type="text" placeholder="Region Name" value="<%= @region.name %>">
+  <button class="btn btn-danger">Create Region</button>
+</form>
+
+
