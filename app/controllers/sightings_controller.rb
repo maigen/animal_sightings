@@ -2,11 +2,14 @@ class SightingsController < ApplicationController
 
   def index
     @sightings = Sighting.all
+
     render('sightings/index.html.erb')
   end
 
   def show
     @sighting = Sighting.find(params[:id])
+    @species_name = Species.find(@sighting.species_id).name
+    @region_name = Region.find(@sighting.regions_id).name
     render('sightings/show.html.erb')
   end
 
@@ -18,7 +21,11 @@ class SightingsController < ApplicationController
   end
 
   def create
-    @sighting = Sighting.new(:name => params[:name])
+    @sighting = Sighting.new({:species_id => params[:species_id],
+      :regions_id => params[:regions_id], :date => params[:date], :time => params[:time] })
+    @species = Species.find(params[:species_id])
+    @region = Region.find(params[:regions_id])
+
     if @sighting.save
       render('sightings/success.html.erb')
     else
@@ -28,12 +35,19 @@ class SightingsController < ApplicationController
 
   def edit
     @sighting = Sighting.find(params[:id])
+    @species_name = Species.find(@sighting.species_id).name
+    @region_name = Region.find(@sighting.regions_id).name
+    @all_species = Species.all
+    @regions = Region.all
     render('sightings/edit.html.erb')
   end
 
   def update
     @sighting = Sighting.find(params[:id])
-    if @sighting.update(:name => params[:name])
+    if @sighting.update({:species_id => params[:species_id],
+      :regions_id => params[:regions_id], :date => params[:date], :time => params[:time] })
+      @species = Species.find(params[:species_id])
+      @region = Region.find(params[:regions_id])
       render('sightings/success.html.erb')
     else
       render('sightings/edit.html.erb')

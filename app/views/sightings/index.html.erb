@@ -2,7 +2,11 @@
 
 <ul>
   <% @sightings.each do |sighting| %>
-    <li><a href="/sightings/<%= sighting.id %>"> <%= sighting.species_id %> - <%= sighting.region_id %></a> </li>
+    <li><a href="/sightings/<%= sighting.id %>">
+      <%= Species.find(sighting.species_id).name %>
+      -
+      <%= Region.find(sighting.regions_id).name %>
+    </a> </li>
   <% end %>
 </ul>
 

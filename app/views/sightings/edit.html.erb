@@ -8,9 +8,40 @@
     <% end %>
   </ul>
 <% end %>
-
-<form action="/sightings/<%=@sighting.id %>" method="post">
+<!-- @sighting.species_id, @sighting.regions_id -->
+<form action="/sightings/<%= @sighting.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
-  <input id="sighting_name" name="name" type="text" value="<%= @sighting.name %>">
+  <label class="sp-label">Species spotted:
+    <select name="species_id">
+      <% @all_species.each do |species| %>
+        <option <% if @sighting.species_id == species.id %>
+          selected
+          <% end %>
+         value="<%= species.id %>"><%= species.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <label class="sp-label">In what region:
+    <select name="regions_id">
+      <% @regions.each do |region| %>
+        <option <% if @sighting.regions_id == region.id %>
+         selected
+          <% end %>
+        value="<%= region.id %>"><%= region.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+
+  <label class="sp-label">Date:
+    <input type="text" name="date" value="<%=@sighting.date %>"><span>yyyy/mm/dd</span>
+  </label>
+
+  <label class="sp-label">Time:
+    <input type="text" name="time" value="<%=@sighting.time %>"><span>hh:mm</span>
+  </label>
   <button class="btn btn-danger">Update Sighting</button>
 </form>
+
+

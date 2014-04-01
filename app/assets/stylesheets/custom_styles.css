@@ -34,3 +34,14 @@ li {
   list-style-position: inside;
   list-style-type: circle;
 }
+
+.sp-label {
+  display:block;
+  margin:15px 0;
+}
+
+.sp-label span {
+  color: gray;
+  font-style: italic;
+  padding: 0 0 0 10px;
+}
