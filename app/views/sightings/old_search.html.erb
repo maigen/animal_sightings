@@ -1,26 +1,30 @@
 <h1>Search for Sightings</h1>
 
 <h3>Search by Date Range</h3>
-<form action="/sightings/results" method="get">
+<form action="/sightings/date_results" method="get">
   <label class="sp-label">Start date
   <input id="sightings_start_date" name="start_date" type="date"></label>
   <label class="sp-label">End date
   <input id="sightings_end_date" name="end_date" type="date"></label>
+  <button class="btn btn-primary">Run report</button>
+</form>
 <hr>
 <h3>Search by Region</h3>
+<form action="/sightings/region_results" method="get">
   <select name="regions_id">
     <% @regions.each do |region| %>
       <option value="<%= region.id %>"><%= region.name %></option>
     <% end %>
   </select>
+  <button class="btn btn-primary">Run report</button>
+</form>
 <hr>
 <h3>Search by Species</h3>
+<form action="/sightings/species_results" method="get">
   <select name="species_id">
     <% @all_species.each do |species| %>
       <option value="<%= species.id %>"><%= species.name %></option>
     <% end %>
   </select>
-  <hr>
   <button class="btn btn-primary">Run report</button>
 </form>
-

@@ -18,9 +18,10 @@ Wildlife::Application.routes.draw do
 
   match('sightings', {:via => :get, :to => 'sightings#index'})
   match('sightings', {:via => :post, :to => 'sightings#create'})
-  match('sightings/date_results', {:via => :get, :to => 'sightings#results'})
-  match('sightings/species_results', {:via => :get, :to => 'sightings#results'})
-  match('sightings/region_results', {:via => :get, :to => 'sightings#results'})
+  match('sightings/results', {:via => :get, :to => 'sightings#results'})
+  # match('sightings/date_results', {:via => :get, :to => 'sightings#results'})
+  # match('sightings/species_results', {:via => :get, :to => 'sightings#results'})
+  # match('sightings/region_results', {:via => :get, :to => 'sightings#results'})
   match('sightings/new', {:via => :get, :to => 'sightings#new'})
   match('sightings/search', {:via => :get, :to => 'sightings#search'})
   match('sightings/:id', {:via => :get, :to => 'sightings#show'})

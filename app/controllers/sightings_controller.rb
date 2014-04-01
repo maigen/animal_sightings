@@ -60,15 +60,7 @@ class SightingsController < ApplicationController
   end
 
   def results
-    @sighting = Sighting.new({:date => params[:start_date], :species_id => params[:species_id], :regions_id => params[:regions_id]})
-
-    if @sighting.date
-      @sightings_results = Sighting.all.where(:date => params[:start_date]..params[:end_date])
-    elsif @sighting.species_id
-      @sightings_results = Sighting.all.where(:species_id => params[:species_id])
-    else
-      @sightings_results = Sighting.all.where(:regions_id => params[:regions_id])
-    end
+    @sightings_results = Sighting.all.where({:date => params[:start_date]..params[:end_date], :species_id => params[:species_id], :regions_id => params[:regions_id]})
     render('sightings/results.html.erb')
   end
 end
