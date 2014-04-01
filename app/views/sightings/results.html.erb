@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+<ul>
+  <% @sightings_results.each do |res| %>
+    <li><a href="/sightings/<%= res.id  %>">
+    <%= Species.find(res.species_id).name %>
+      -
+      <%= Region.find(res.regions_id).name %></a></li>
+  <% end %>
+</ul>

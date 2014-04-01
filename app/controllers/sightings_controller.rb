@@ -2,7 +2,6 @@ class SightingsController < ApplicationController
 
   def index
     @sightings = Sighting.all
-
     render('sightings/index.html.erb')
   end
 
@@ -52,5 +51,24 @@ class SightingsController < ApplicationController
     else
       render('sightings/edit.html.erb')
     end
+  end
+
+  def search
+    @regions = Region.all
+    @all_species = Species.all
+    render('sightings/search.html.erb')
+  end
+
+  def results
+    @sighting = Sighting.new({:date => params[:start_date], :species_id => params[:species_id], :regions_id => params[:regions_id]})
+
+    if @sighting.date
+      @sightings_results = Sighting.all.where(:date => params[:start_date]..params[:end_date])
+    elsif @sighting.species_id
+      @sightings_results = Sighting.all.where(:species_id => params[:species_id])
+    else
+      @sightings_results = Sighting.all.where(:regions_id => params[:regions_id])
+    end
+    render('sightings/results.html.erb')
   end
 end
